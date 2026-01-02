@@ -99,9 +99,9 @@ class Mininet extends EventEmitter {
 
         def print_host(h):
           try:
-            print "ack", json.dumps({'name': h.name, 'ip': h.IP(), 'mac': h.MAC()})
+            print("ack", json.dumps({'name': h.name, 'ip': h.IP(), 'mac': h.MAC()}))
           except:
-            print "err", json.dumps("host info failed")
+            print("err", json.dumps("host info failed"))
 
         def net_start():
           try:
@@ -109,9 +109,9 @@ class Mininet extends EventEmitter {
             result = []
             for h in net.hosts:
               result.append({'name': h.name, 'ip': h.IP(), 'mac': h.MAC()})
-            print "ack", json.dumps(result)
+            print("ack", json.dumps(result))
           except:
-            print "err", json.dumps("start failed")
+            print("err", json.dumps("start failed"))
 
         net = Mininet(link=TCLink, switch=OVSBridge, controller=findController())
       `)
@@ -145,7 +145,7 @@ class Mininet extends EventEmitter {
 
     if (this.started) {
       this._queue.push(cb)
-      this._exec(`print "ack"`)
+      this._exec(`print("ack")`)
       return
     }
 
@@ -239,7 +239,7 @@ class Switch {
       try:
         ${this.id} = net.addSwitch("${this.id}")
       except:
-        print "critical", json.dumps("add switch failed")
+        print("critical", json.dumps("add switch failed"))
     `)
   }
 
@@ -257,7 +257,7 @@ class Switch {
         try:
           net.addLink(${this.id}, ${to.id} ${line})
         except:
-          print "critical", json.dumps("add link failed")
+          print("critical", json.dumps("add link failed"))
       `)
 
     return to
@@ -279,7 +279,7 @@ class Host extends EventEmitter {
       try:
         ${this.id} = net.addHost("${this.id}")
       except:
-        print "critical", json.dumps("add host failed")
+        print("critical", json.dumps("add host failed"))
     `)
   }
 
@@ -391,7 +391,7 @@ class Host extends EventEmitter {
       try:
         net.addLink(${this.id}, ${to.id} ${line})
       except:
-        print "critical", json.dumps("add link failed")
+        print("critical", json.dumps("add link failed"))
     `)
 
     return to
@@ -491,7 +491,7 @@ class Host extends EventEmitter {
     this._mn._queue.push(cb || noop)
     this._mn._exec(`
       res = ${this.id}.cmd(${JSON.stringify(cmd)})
-      print "ack", json.dumps(res)
+      print("ack", json.dumps(res))
     `)
   }
 }

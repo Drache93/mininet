@@ -12,7 +12,7 @@ npm install mininet
 ```js
 const mininet = require('mininet')
 
-const mn = mininet()
+const mn = new Mininet()
 
 // create a switch
 const s1 = mn.createSwitch()
@@ -65,7 +65,7 @@ server.listen(10000, function () {
 
 ## API
 
-#### `const mn = mininet([options])`
+#### `const mn = new Mininet([options])`
 
 Create a new mininet instance. Options include
 
