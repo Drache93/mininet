@@ -1,5 +1,5 @@
 const Mininet = require('../')
-const mn = new Mininet({ debug: true })
+const mn = new Mininet()
 
 const s1 = mn.createSwitch()
 const h1 = mn.createHost()
