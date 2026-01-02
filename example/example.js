@@ -13,9 +13,15 @@ mn.start(function () {
 })
 
 h1.spawn('node server.js', { stdio: 'inherit' }).on('message:listening', function () {
-  h2.spawn('curl --silent ' + h1.ip + ':10000', {
+  console.log('started', h1.ip)
+
+  h2.spawn('node client.js ' + h1.ip, {
     stdio: 'inherit'
   })
+
+  setTimeout(() => {
+    mn.stop()
+  }, 5000)
 })
 
 process.on('SIGINT', function () {
